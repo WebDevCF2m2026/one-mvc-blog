@@ -40,7 +40,8 @@ Table `user` :
 
 `login` en VARCHAR(30), NOT NULL (30 caractères maximum), UNIQUE
 
-`pwd` en VARCHAR(255), NOT NULL (255 caractères maximum) pour un mot de passe haché.
+`pwd` en VARCHAR(255), NOT NULL (255 caractères maximum) pour un mot de passe haché. Suivez ce lien pour hacher le mot de passe https://onlinephp.io/c/ca27f
+
 
 
 #### Documentation SQL
