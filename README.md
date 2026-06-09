@@ -32,5 +32,18 @@ Voici les types de jointures les plus courants :
 
 ## Les tables
 
-https://onlinephp.io/c/7a6ff#google_vignette
+### user
 
+Table `user` :
+
+`id` en SMALLINT, AUTO_INCREMENT, PRIMARY KEY, UNSIGNED, NOT NULL (2 octets, de 0 à 65535)
+
+`login` en VARCHAR(30), NOT NULL (30 caractères maximum), UNIQUE
+
+`pwd` en VARCHAR(255), NOT NULL (255 caractères maximum) pour un mot de passe haché.
+
+
+#### Documentation SQL
+
+Les int : https://dev.mysql.com/doc/refman/9.7/en/integer-types.html
+Les varchar : https://dev.mysql.com/doc/refman/9.7/en/string-types.html#varchar
