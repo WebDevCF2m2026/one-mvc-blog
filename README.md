@@ -48,3 +48,8 @@ Table `user` :
 
 Les int : https://dev.mysql.com/doc/refman/9.7/en/integer-types.html
 Les varchar : https://dev.mysql.com/doc/refman/9.7/en/string-types.html#varchar
+
+
+### Exportation dans Workbench
+
+        EER Diagram > Database > Forward Engineer
