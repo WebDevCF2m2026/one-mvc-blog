@@ -12,7 +12,8 @@ SELECT a.`title`, u.`login`
     JOIN `user` u
     	ON a.`user_id` = u.id;       
 # Sélectionner l'id et le realname de la table user en ajoutant l'id renommé idarticle et le title de la table article (jointure obligatoire) avec alias 
-SELECT u.`id`, u.`realname`, a.`id` AS idarticle, a.`title` -- AS pour alias de sortie
+SELECT u.`id`, u.`realname`, 
+	   a.`id` AS idarticle, a.`title` -- AS pour alias de sortie
 	FROM `user` u
     JOIN `article` a
     	ON a.`user_id` = u.`id`;
@@ -43,4 +44,40 @@ SELECT  u.`id`, u.`realname`,
     	ON a.`id` = h.`article_id`
     LEFT JOIN `category` c 
     	ON h.`category_id` = c.`id`
-    GROUP BY u.`id`    ;           
+    GROUP BY u.`id`    ;    
+    
+    
+# Sélectionner l'id et le realname, ainsi que 250 caractères (250 bytes réels) de la table user en ajoutant l'id renommé idarticle et le title de la table article (jointure obligatoire) avec alias. On veut ajouter le title renommé categtitle de la catégorie de l'article sélectionné. Jointure externe (LEFT JOIN non obligatoire) entre article et catégories
+SELECT  u.`id`, u.`realname`,
+		a.`id` AS idarticle, a.`title`, LEFT(a.`content`,250) AS `content`, -- AS pour alias de sortie, LEFT pour couper content pour éviter un texte trop long
+        c.`title` AS categtitle
+		
+	FROM `user` u
+    INNER JOIN `article` a
+    	ON a.`user_id` = u.`id`
+    LEFT JOIN `category_has_article`h   
+    	ON a.`id` = h.`article_id`
+    LEFT JOIN `category` c 
+    	ON h.`category_id` = c.`id`;    
+        
+        
+# A faire PAS REALISTE
+SELECT  u.`id`, u.`realname`, #user
+		GROUP_CONCAT(a.`id`) AS idarticle, GROUP_CONCAT(a.`title` SEPARATOR '_|♥|_') AS title, GROUP_CONCAT(LEFT(a.`content`,250) SEPARATOR '_|♥|_') AS `content`, -- AS pour alias de sortie, article
+        CONCAT((
+            SELECT GROUP_CONCAT(c.id) FROM category c 
+            LEFT JOIN `category_has_article`h   
+    	ON a.`id` = h.`article_id`
+        GROUP BY  a.`id`   
+                     ) ,' ') AS categ # categories
+        #LEFT pour couper content pour éviter un texte trop long
+        -- GROUP_CONCAT(c.`id`) AS idcateg , GROUP_CONCAT(c.`title` SEPARATOR '_|♥|_') AS categtitle
+		
+	FROM `user` u
+    INNER JOIN `article` a
+    	ON a.`user_id` = u.`id`
+
+        
+    GROUP BY u.`id`    ; 
+    
+# PAGE d'accueil    
