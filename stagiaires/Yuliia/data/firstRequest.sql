@@ -43,4 +43,4 @@ SELECT  u.`id`, u.`realname`,
     	ON a.`id` = h.`article_id`
     LEFT JOIN `category` c 
     	ON h.`category_id` = c.`id`
-    GROUP BY u.`id`    ;             
+    GROUP BY u.`id`    ;           
