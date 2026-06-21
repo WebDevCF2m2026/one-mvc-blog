@@ -61,23 +61,20 @@ SELECT  u.`id`, u.`realname`,
     	ON h.`category_id` = c.`id`;    
         
         
-# A faire PAS REALISTE
-SELECT  u.`id`, u.`realname`, #user
-		GROUP_CONCAT(a.`id`) AS idarticle, GROUP_CONCAT(a.`title` SEPARATOR '_|♥|_') AS title, GROUP_CONCAT(LEFT(a.`content`,250) SEPARATOR '_|♥|_') AS `content`, -- AS pour alias de sortie, article
-        CONCAT((
-            SELECT GROUP_CONCAT(c.id) FROM category c 
-            LEFT JOIN `category_has_article`h   
-    	ON a.`id` = h.`article_id`
-        GROUP BY  a.`id`   
-                     ) ,' ') AS categ # categories
-        #LEFT pour couper content pour éviter un texte trop long
-        -- GROUP_CONCAT(c.`id`) AS idcateg , GROUP_CONCAT(c.`title` SEPARATOR '_|♥|_') AS categtitle
-		
-	FROM `user` u
-    INNER JOIN `article` a
-    	ON a.`user_id` = u.`id`
-
-        
-    GROUP BY u.`id`    ; 
+# Fonctionnel
+        SELECT u.`id`, u.`realname`,
+    GROUP_CONCAT(a.`id` SEPARATOR '_|♥|_') AS idarticle, GROUP_CONCAT(a.`title` SEPARATOR '_|♥|_') AS title, GROUP_CONCAT(LEFT(a.`content`, 250) SEPARATOR '_|♥|_') AS content,
+    GROUP_CONCAT(
+        (
+            SELECT CONCAT(GROUP_CONCAT(c.`id` SEPARATOR ',' ) , GROUP_CONCAT(c.`title` SEPARATOR '_|♥|_'),"___")
+            FROM `category` c 
+            INNER JOIN `category_has_article` h ON c.`id` = h.`category_id`
+            WHERE h.`article_id` = a.`id`
+        )
+        SEPARATOR '_|♥|_'
+    ) AS categ
+FROM `user` u
+INNER JOIN `article` a ON a.`user_id` = u.`id`
+GROUP BY u.`id`;
     
 # PAGE d'accueil    
