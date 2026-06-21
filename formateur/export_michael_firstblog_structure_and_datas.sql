@@ -34,7 +34,6 @@ CREATE TABLE IF NOT EXISTS `article` (
   `actif` tinyint DEFAULT '0' COMMENT '0 => non visible\n1 => visible\n2 =>  article caché',
   `user_id` smallint UNSIGNED NOT NULL COMMENT 'clef étrangère qui fait le lien avec la table user',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `actif_UNIQUE` (`actif`),
   KEY `fk_article_user_idx` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
