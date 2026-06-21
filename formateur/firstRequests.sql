@@ -66,7 +66,7 @@ SELECT  u.`id`, u.`realname`,
     GROUP_CONCAT(a.`id` SEPARATOR '_|♥|_') AS idarticle, GROUP_CONCAT(a.`title` SEPARATOR '_|♥|_') AS title, GROUP_CONCAT(LEFT(a.`content`, 250) SEPARATOR '_|♥|_') AS content,
     GROUP_CONCAT(
         (
-            SELECT CONCAT(GROUP_CONCAT(c.`id` SEPARATOR ',' ) , GROUP_CONCAT(c.`title` SEPARATOR '_|♥|_'),"___")
+            SELECT CONCAT(GROUP_CONCAT(c.`id` SEPARATOR ',' ), "|||" , GROUP_CONCAT(c.`title` SEPARATOR '_|♥|_'),"___")
             FROM `category` c 
             INNER JOIN `category_has_article` h ON c.`id` = h.`category_id`
             WHERE h.`article_id` = a.`id`
@@ -74,7 +74,7 @@ SELECT  u.`id`, u.`realname`,
         SEPARATOR '_|♥|_'
     ) AS categ
 FROM `user` u
-INNER JOIN `article` a ON a.`user_id` = u.`id`
+LEFT JOIN `article` a ON a.`user_id` = u.`id`
 GROUP BY u.`id`;
     
 # PAGE d'accueil    
