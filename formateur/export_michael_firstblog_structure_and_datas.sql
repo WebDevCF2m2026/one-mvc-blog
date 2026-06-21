@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 10 juin 2026 à 11:58
+-- Généré le : dim. 21 juin 2026 à 05:13
 -- Version du serveur : 8.4.7
 -- Version de PHP : 8.4.15
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `user_id` smallint UNSIGNED NOT NULL COMMENT 'clef étrangère qui fait le lien avec la table user',
   PRIMARY KEY (`id`),
   KEY `fk_article_user_idx` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `article`
@@ -44,7 +44,9 @@ CREATE TABLE IF NOT EXISTS `article` (
 INSERT INTO `article` (`id`, `title`, `content`, `datetime`, `actif`, `user_id`) VALUES
 (4, 'zzzzzzzzzzz', 'zzzzzzzzzz', '2026-06-10 11:06:11', 1, 1),
 (5, 'yyyyyyyyyyy', 'yyyyyyyyyyyyyy', '2026-06-10 11:06:11', 0, 2),
-(6, 'xxxxxxxxxxxxxx', 'xxxxxxxxxxxx', '2026-06-10 11:06:11', 2, 3);
+(6, 'xxxxxxxxxxxxxx', 'xxxxxxxxxxxx', '2026-06-10 11:06:11', 2, 3),
+(7, 'ddddddddddd', 'ddddddddddddddd', '2026-06-21 06:58:28', 1, 1),
+(8, 'eeeeeeeeeee', 'eeeeeeeeeeeeeeeee eeeeeeeeeeeeee', '2026-06-21 06:59:07', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -58,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `title` varchar(60) NOT NULL,
   `description` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `category`
@@ -67,7 +69,8 @@ CREATE TABLE IF NOT EXISTS `category` (
 INSERT INTO `category` (`id`, `title`, `description`) VALUES
 (1, 'categ1', 'categ1'),
 (2, 'categ2', 'categ2'),
-(3, 'categ3', 'categ3');
+(3, 'categ3', 'categ3'),
+(4, 'category4', 'category4');
 
 -- --------------------------------------------------------
 
@@ -91,9 +94,11 @@ CREATE TABLE IF NOT EXISTS `category_has_article` (
 INSERT INTO `category_has_article` (`category_id`, `article_id`) VALUES
 (1, 5),
 (1, 6),
-(2, 6),
+(1, 8),
+(2, 8),
 (3, 5),
-(3, 6);
+(3, 6),
+(3, 8);
 
 -- --------------------------------------------------------
 
@@ -112,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `uniqid` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -121,7 +126,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `login`, `realname`, `pwd`, `email`, `actif`, `uniqid`) VALUES
 (1, 'aaaa', 'aaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', 2, 'aaaaaaaaa'),
 (2, 'bbbbbbbbbb', 'bbbbbbbbbb', 'bbbbbbbbbbb', 'bbbbbbbbbbb', 2, 'bbbbbbbbb'),
-(3, 'cccccccc', 'cccccccccccc', 'cccccccccccc', 'ccccccccc', 2, 'cccccccccc');
+(3, 'cccccccc', 'cccccccccccc', 'cccccccccccc', 'ccccccccc', 2, 'cccccccccc'),
+(4, 'dddddddddddddddd', 'ddddddddddd', 'dddddddddddddddd', 'dddddddddddddddd', 2, 'dddddddddddddd');
 
 --
 -- Contraintes pour les tables déchargées
