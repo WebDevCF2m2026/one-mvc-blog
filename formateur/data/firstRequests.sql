@@ -97,3 +97,12 @@ SELECT `id`, `title`, SUBSTRING(`content`,1, 3) AS `content`, `datetime`
 	FROM `article`
     WHERE `actif`= 1
     ORDER BY `datetime` DESC;
+
+# On récupèrere tous les champs id, le title, 200 caractères de content en utilisant SUBSTRING (ce language par de 1 !), le datetime de la table article (Auquel on rajoute l'id renommé en iduser, le login et le realname de la table user en jointure interne, obligatoire) quand actif=1 ordonnés par datetime DESC    
+SELECT  a.`id`, a.`title`, SUBSTRING(a.`content`,1, 200) AS `content`, a.`datetime`,
+		u.`id` AS `iduser`, u.`login`, u.`realname`	
+	FROM `article` a
+    INNER JOIN `user` u 
+    	ON a.`user_id` = u.`id`
+    WHERE a.`actif`= 1
+    ORDER BY a.`datetime` DESC;    
