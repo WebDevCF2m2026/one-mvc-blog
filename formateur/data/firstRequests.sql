@@ -106,3 +106,32 @@ SELECT  a.`id`, a.`title`, SUBSTRING(a.`content`,1, 200) AS `content`, a.`dateti
     	ON a.`user_id` = u.`id`
     WHERE a.`actif`= 1
     ORDER BY a.`datetime` DESC;    
+
+# On récupèrere tous les champs id, le title, 200 caractères de content en utilisant SUBSTRING (ce language par de 1 !), le datetime de la table article (Auquel on rajoute l'id renommé en iduser, le login et le realname de la table user en jointure interne, obligatoire), (Auquel on rajoute les id renommés en idcategory et title renommés en title category des category si il y en a en jointure externe, non obligatoire) quand actif=1 ordonnés par datetime DESC    
+SELECT  a.`id`, a.`title`, SUBSTRING(a.`content`,1, 200) AS `content`, a.`datetime`,
+		u.`id` AS `iduser`, u.`login`, u.`realname`,
+        c.`id` AS `idcategory`, c.`title` AS `titlecategory`
+	FROM `article` a
+    INNER JOIN `user` u 
+    	ON a.`user_id` = u.`id`
+    LEFT JOIN `category_has_article` h 
+    	ON a.`id` = h.`article_id`
+    LEFT JOIN `category` c
+    	ON c.`id` = h.`category_id`
+    WHERE a.`actif`= 1
+    ORDER BY a.`datetime` DESC;  
+
+# On récupèrere tous les champs id, le title, 200 caractères de content en utilisant SUBSTRING (ce language par de 1 !), le datetime de la table article (Auquel on rajoute l'id renommé en iduser, le login et le realname de la table user en jointure interne, obligatoire), (Auquel on rajoute les id groupées et renommés en idcategory et title groupés ave le séparateur `_|♥|_` renommés en titlecategory des category si il y en a en jointure externe, non obligatoire) quand actif=1 groupés par l'id de l'article ordonnés par datetime DESC    
+SELECT  a.`id`, a.`title`, SUBSTRING(a.`content`,1, 200) AS `content`, a.`datetime`,
+		u.`id` AS `iduser`, u.`login`, u.`realname`,
+        GROUP_CONCAT(c.`id`) AS `idcategory`, GROUP_CONCAT(c.`title` SEPARATOR '_|♥|_') AS `titlecategory`
+	FROM `article` a
+    INNER JOIN `user` u 
+    	ON a.`user_id` = u.`id`
+    LEFT JOIN `category_has_article` h 
+    	ON a.`id` = h.`article_id`
+    LEFT JOIN `category` c
+    	ON c.`id` = h.`category_id`
+    WHERE a.`actif`= 1
+    GROUP BY a.`id`
+    ORDER BY a.`datetime` DESC;
