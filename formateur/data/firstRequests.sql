@@ -79,8 +79,21 @@ GROUP BY u.`id`;
     
 # PAGE d'accueil    
 
-## On récupère tous les champs id et le title de la table category ordonné par title ASC
+# # Menu
+# On récupère tous les champs id et le title de la table category ordonné par title ASC
 
 SELECT id, title 
 	FROM category 
     ORDER BY title ASC;
+
+# On récupèrere tous les champs id, le title, 200 caractères de content, le datetime de la table article quand actif=1 ordonnés par datetime DESC    
+SELECT `id`, `title`, LEFT(`content`,200) AS `content`, `datetime`
+	FROM `article`
+    WHERE `actif`= 1
+    ORDER BY `datetime` DESC;
+
+# On récupèrere tous les champs id, le title, 200 caractères de content en utilisant SUBSTRING, le datetime de la table article quand actif=1 ordonnés par datetime DESC    
+SELECT `id`, `title`, SUBSTRING(`content`,1, 3) AS `content`, `datetime`
+	FROM `article`
+    WHERE `actif`= 1
+    ORDER BY `datetime` DESC;
