@@ -31,6 +31,8 @@ Voici les types de jointures les plus courants :
 
 ## La base de donnée
 
+Importez `formateur\data\oneblog_structure_and_datas.sql`
+
 ![Base MySQL](stagiaires/michael/data/michael_firstblog_view.png)
 
 ## Les tables
