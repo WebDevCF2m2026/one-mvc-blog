@@ -78,3 +78,9 @@ LEFT JOIN `article` a ON a.`user_id` = u.`id`
 GROUP BY u.`id`;
     
 # PAGE d'accueil    
+
+## On récupère tous les champs id et le title de la table category ordonné par title ASC
+
+SELECT id, title 
+	FROM category 
+    ORDER BY title ASC;
