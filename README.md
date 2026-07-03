@@ -29,6 +29,11 @@ Voici les types de jointures les plus courants :
 - **LEFT JOIN** : Retourne tous les enregistrements de la table de gauche et les enregistrements correspondants de la table de droite. Si aucune correspondance n'est trouvée, les résultats de la table de droite seront NULL. `jointure externe gauche` signifie que toutes les lignes de la table de gauche seront incluses dans le résultat, même si elles n'ont pas de correspondance dans la table de droite.
 - **RIGHT JOIN** : Retourne tous les enregistrements de la table de droite et les enregistrements correspondants de la table de gauche. Si aucune correspondance n'est trouvée, les résultats de la table de gauche seront NULL. `jointure externe droite` signifie que toutes les lignes de la table de droite seront incluses dans le résultat, même si elles n'ont pas de correspondance dans la table de gauche.
 
+## La base de donnée
+
+Importez `formateur\data\oneblog_structure_and_datas.sql`
+
+![Base MySQL](stagiaires/michael/data/michael_firstblog_view.png)
 
 ## Les tables
 
