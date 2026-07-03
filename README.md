@@ -48,3 +48,5 @@ Table `user` :
 
 Les int : https://dev.mysql.com/doc/refman/9.7/en/integer-types.html
 Les varchar : https://dev.mysql.com/doc/refman/9.7/en/string-types.html#varchar
+Les TEXT : https://www.sliceo.com/fr/question/index/id/216-quelle-est-la-limite-des-champs-tinytext-text-mediumtext-ou-longtext-dans-mysql/
+
