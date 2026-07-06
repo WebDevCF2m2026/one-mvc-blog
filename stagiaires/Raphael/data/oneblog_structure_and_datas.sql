@@ -13,11 +13,11 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Base de données : `michael_firstblog`
+-- Base de données : `oneblog`
 --
-DROP DATABASE IF EXISTS `michael_firstblog`;
-CREATE DATABASE IF NOT EXISTS `michael_firstblog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `michael_firstblog`;
+DROP DATABASE IF EXISTS `oneblog`;
+CREATE DATABASE IF NOT EXISTS `oneblog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `oneblog`;
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ INSERT INTO `category` (`id`, `title`, `description`) VALUES
 (1, 'categ1', 'categ1'),
 (2, 'categ2', 'categ2'),
 (3, 'categ3', 'categ3'),
-(4, 'category4', 'category4');
+(4, 'categ4', 'categ4');
 
 -- --------------------------------------------------------
 
