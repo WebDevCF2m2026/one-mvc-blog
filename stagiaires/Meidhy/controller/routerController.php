@@ -13,7 +13,8 @@
 
 // appel du gestionnaire de category
 require_once BASE_URL."/model/CategoryModel.php";
-
+// appel du gestionnaire d'articles 
+require_once BASE_URL."/model/ArticleModel.php"; 
 
 try{
     $connection = new PDO(
@@ -36,8 +37,10 @@ try{
 
 
 // récupération des category pourmenu 
-
 $menu = selectCategoryForMenu($connection);
+
+// récupéreation des articles pour la homepage 
+$articles = selectHomepageArticle($connection); 
 
 // gestion des données
 
