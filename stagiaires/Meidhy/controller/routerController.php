@@ -39,22 +39,49 @@ try{
     die($e->getMessage());
 }
 
+// gestion des données utiles pour toutes les pages 
+
+// récupération des catégories pour le menu
+$menu = selectCategoryForMenu($connection);
+
+// début du routeur 
+
+// On vérifie l'existance (avec isset ou le fait qu'il ne soit pas vide pour le zéro) 
+// de la variable get idarticle et qu'il ne contient que des digits 0_9
+if(!empty(isset($_GET['idarticle']) && ctype_digit($_GET['idarticle']))){
+    // On mets dans une variable locale la variable get transformer en entier 
+    $idarticle = (int) $_GET['idarticle']; // ou via settype($_GET['idarticle'], "integer")
+
+    // Récupération de l'article 
+    $article = selectArticleById($connection, $idarticle);
+    
+    // Si l'article vaut false 
+    if($article === null){
+        $content = "Cette page n'existe plus, merci de visiter les autres sections de notre site";
+        // appel de la page 404
+        include_once BASE_URL."view/404.html.php";
+        exit;
+    }
+
+    // appel de la vue
+    include_once BASE_URL."/view/article.html.php";
+    
+
+    }else{
 
 
 /*************************
  * homepage
  *************************/
 
-// gestion des données
 
-// récupération des catégories pour le menu
-$menu = selectCategoryForMenu($connection);
 
 // récupération des articles pour la homepage
 $articles = selectHomepageArticle($connection);
 
 // appel de la vue
 include_once BASE_URL."/view/homepage.html.php";
+}
 
 // bonne pratique, fermeture de connexion
 $connection = null;
