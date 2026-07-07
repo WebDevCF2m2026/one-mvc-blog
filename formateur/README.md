@@ -48,3 +48,17 @@ Table de liaison many-to-many entre `category` et `article`.
 - `category_has_article.article_id` -> `article.id`
 - `category_has_article.category_id` -> `category.id`
 - `article` <-> `category` : relation many-to-many via `category_has_article`
+
+## Utilisateurs de test
+
+### Admin
+- login : `Admin`
+- nom : `Pitz Michaël`
+- mot de passe : `admin321`
+
+- login : `ThePiet`
+- nom : `Sandron Pierre`
+- mot de passe : `admin567`
+
+
+

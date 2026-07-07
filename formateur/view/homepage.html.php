@@ -43,7 +43,7 @@
             ?>
 
       <div class="col-lg-4">
-        <h3><a href="?idarticle=<?= $article['id'] ?>"><?= $article['title'] ?></a></h3>
+        <h4><a href="?idarticle=<?= $article['id'] ?>"><?= $article['title'] ?></a></h4>
         <?php
         // si pas de category (===null)
         if(is_null($article['idcategory'])):
@@ -60,7 +60,7 @@
             // on compte le nombre de catégories
             $nbcateg = count($idcateg);
         ?>
-        <h5><?php
+        <h5 class="p-3"><?php
             // tant qu'on a des catégories
             for($i=0; $i<$nbcateg; $i++):
                 // on les affiches avec le lien qui sont leurs IDs
