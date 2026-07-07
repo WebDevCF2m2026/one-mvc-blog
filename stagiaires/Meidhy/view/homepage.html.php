@@ -72,8 +72,8 @@
         <?php
         endif;
         ?>
-        <p class="lead">Ecrit par <a href="?iduser=<?= $article['iduser'] ?>"><?= $article['realname'] ?></a> le <?= $article['datetime'] ?></pa> 
-        <p><?= $article['content'] ?></p>
+        <p class="lead">Ecrit par <a href="?iduser=<?= $article['iduser'] ?>"><?= $article['realname'] ?></a> le <?= $article['datetime'] ?></p> 
+        <p><?= cutTheText($article['content'],180) ?><a href="?idarticle=<?= $article['id'] ?>"> Lire la suite... </a></p>
       </div>
 
             <?php
