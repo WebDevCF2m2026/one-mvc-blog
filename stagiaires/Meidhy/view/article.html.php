@@ -17,30 +17,12 @@
      <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
-                <h1>OneBlog | Accueil</h1>
+                <h1>OneBlog | Titre de l'article</h1>
                 <p class="lead">Page d'accueil de mon blog</p>
             </div>
 
-            <?php
-            // si pas d'articles
-            if(empty($articles)):
-            ?>
-            <h3>Pas encore d'article</h3>
-            <?php
-            // sinon au moin un article
-            else:
-                // on va compter le nombre d'articles
-                $count = count($articles);
-                // on ajoute le pluriel si plus d'un
-                $pluriel = ($count>1)? "s" : "";
-            ?>
-            <h4 class="pb-3">Il y a <?= $count ?> article<?= $pluriel ?></h4>
             <!-- Three columns -->
             <div class="row">
-            <?php
-                // tant qu'on a des articles
-                foreach($articles as $article):
-            ?>
 
       <div class="col-lg-4">
         <h4><a href="?idarticle=<?= $article['id'] ?>"><?= $article['title'] ?></a></h4>
@@ -72,14 +54,10 @@
         <?php
         endif;
         ?>
-        <p class="lead">Ecrit par <a href="?iduser=<?= $article['iduser'] ?>"><?= $article['realname'] ?></a> le <?= $article['datetime'] ?></p> 
-        <p><?= cutTheText($article['content'],180) ?><a href="?idarticle=<?= $article['id'] ?>"> Lire la suite... </a></p>
+        <p class="lead">Ecrit par <a href="?iduser=<?= $article['iduser'] ?>">
+            <?= $article['realname'] ?></a> le <?= $article['datetime'] ?></p> 
+        <p><?= $article['content'] ?></p>
       </div>
-
-            <?php
-                endforeach;
-            endif;
-            ?>
             </div>
         </div>
 
