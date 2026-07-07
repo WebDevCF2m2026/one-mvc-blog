@@ -39,16 +39,28 @@ try{
     die($e->getMessage());
 }
 
+// gestion des données utiles pour toutes les pages
 
+// récupération des catégories pour le menu
+$menu = selectCategoryForMenu($connection);
+
+/**
+ * Début du router
+ */
+
+// on va vérifier l'existance (avec isset ou le fait qu'il soit non vide pour le 0) de la variable get idarticle et qu'il ne contient que des digits (0_9)
+if(!empty($_GET['idarticle'])&& ctype_digit($_GET['idarticle'])){
+    // echo gettype($_GET['idarticle']);// affichage du type
+    // on met dans une variable locale la variable get transformée en entier
+    $idarticle = (int) $_GET['idarticle'];
+    // settype($_GET['idarticle'],"integer");
+}
 
 /*************************
  * homepage
  *************************/
 
-// gestion des données
 
-// récupération des catégories pour le menu
-$menu = selectCategoryForMenu($connection);
 
 // récupération des articles pour la homepage
 $articles = selectHomepageArticle($connection);
