@@ -1,18 +1,17 @@
 <?php
-# meidhy/model/ArticleModel.php
+# formateur/model/ArticleModel.php
 
 /**
- * Gestionnaire de page articles
+ * Gestionnaire de la table Article
  */
 
 /**
- * Selection de tous les articles pour la page d'accueil 
+ * Sélection de tous les articles pour la page d'accueil
  */
-
 
 function selectHomepageArticle(PDO $db): array
-// requête 
 {
+    // requête
     $sql = "SELECT  a.`id`, a.`title`, SUBSTRING(a.`content`,1, 200) AS `content`, a.`datetime`,
 		u.`id` AS `iduser`, u.`login`, u.`realname`,
         GROUP_CONCAT(c.`id`) AS `idcategory`, GROUP_CONCAT(c.`title` SEPARATOR '_|♥|_') AS `titlecategory`
@@ -26,14 +25,12 @@ function selectHomepageArticle(PDO $db): array
     WHERE a.`actif`= 1
     GROUP BY a.`id`
     ORDER BY a.`datetime` DESC;";
-    // exécution de la requête 
+    // exécution de la requête
     $stmt = $db->query($sql);
-    // récupération des articles (si présent)
-    $articles = $stmt->fetchAll(); 
-    // Bonne pratique 
-    $stmt->closeCursor(); 
-    // envoie du résultat 
-    return $articles; 
+    // récupération des articles
+    $articles = $stmt->fetchAll();
+    // bonne pratique
+    $stmt->closeCursor();
+    // envoi du résultat
+    return $articles;
 }
-
-?> 

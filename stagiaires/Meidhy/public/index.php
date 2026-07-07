@@ -1,17 +1,18 @@
 <?php
+# formateur/public/index.php
 
 /**
- * Contröleur frontal, seul fichier accessible du site
+ * Contrôleur frontal, seul fichier accessible du site
  */
 
 /**
-* Appel des dépendances
-*/
+ * Appel des dépendances
+ */
 
 // fichier de configuration
 require_once "../config.php";
 
 /**
- * Chargement du retour
+ * Chargement du routeur
  */
 require_once BASE_URL."/controller/routerController.php";
