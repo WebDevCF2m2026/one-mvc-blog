@@ -72,7 +72,7 @@
         <?php
         endif;
         ?>
-        <p class="lead">Ecrit par <a href="?iduser=<?= $article['iduser'] ?>"><?= $article['realname'] ?></a> le <?= $article['datetime'] ?></pa> 
+        <p class="lead">Ecrit par <a href="?iduser=<?= $article['iduser'] ?>"><?= $article['realname'] ?></a> le <?= dateInFrench($article['datetime']) ?></pa> 
         <p><?= cutTheText($article['content'],180) ?>... <a href="?idarticle=<?= $article['id'] ?>">lire la suite</a></p>
       </div>
 

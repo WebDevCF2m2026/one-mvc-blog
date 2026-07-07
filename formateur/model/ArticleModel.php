@@ -101,4 +101,13 @@ function cutTheText(string $text, int $lenght=200): string
     return $text;
 }
 
+function dateInFrench(string $date): string
+{
+    // on essaie de convertir la date en timestamp (01/01/1970 en secondes)
+    $timestamp = strtotime($date);
+    // on va la formater avec la date en français
+    $date = date("d/m/Y à H:\hi", $timestamp);
+    return $date;
+}
+
 // echo cutTheText("coucou les amis",7);
