@@ -50,23 +50,42 @@ $menu = selectCategoryForMenu($connection);
 
 // on va vérifier l'existance (avec isset ou le fait qu'il soit non vide pour le 0) de la variable get idarticle et qu'il ne contient que des digits (0_9)
 if(!empty($_GET['idarticle'])&& ctype_digit($_GET['idarticle'])){
+
+/*************************
+ * détail d'un article
+ *************************/
+
     // echo gettype($_GET['idarticle']);// affichage du type
     // on met dans une variable locale la variable get transformée en entier
     $idarticle = (int) $_GET['idarticle'];
     // settype($_GET['idarticle'],"integer");
-}
+
+    // récupération de l'article
+    $article = selectArticleById($connection,$idarticle);
+
+    // si l'article vaut null (non trouvé)
+    if(is_null($article)){
+        // variables pour la 404
+        $content = "Cette page n'existe plus, merci de visiter les autres sections de notre site";
+        // appel de la 404
+        include_once BASE_URL."/view/404.html.php";
+    }else{
+        // appel de la vue
+        include_once BASE_URL."/view/article.html.php";
+    }
+}else{
 
 /*************************
  * homepage
  *************************/
 
+        // récupération des articles pour la homepage
+        $articles = selectHomepageArticle($connection);
 
+        // appel de la vue
+        include_once BASE_URL."/view/homepage.html.php";
 
-// récupération des articles pour la homepage
-$articles = selectHomepageArticle($connection);
-
-// appel de la vue
-include_once BASE_URL."/view/homepage.html.php";
+}
 
 // bonne pratique, fermeture de connexion
 $connection = null;
